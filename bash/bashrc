@@ -1,0 +1,13 @@
+#------------------#
+# .bashrc settings #
+#------------------#
+
+if [ -f /etc/bash.bashrc ]; then
+    . /etc/bash.bashrc
+fi
+
+if [ -f ~/workspace/dotfiles/bash/aliases ]; then
+    . ~/workspace/dotfiles/bash/aliases
+fi
+
+export PS1="\[\033[38;5;6m\][\[$(tput sgr0)\]\u\[$(tput sgr0)\]\[\033[38;5;14m\]@\[$(tput sgr0)\]\h\[$(tput sgr0)\]\[\033[38;5;14m\]]\[$(tput sgr0)\] -> \[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;14m\]\W\[$(tput sgr0)\] \[$(tput sgr0)\]"

@@ -1,0 +1,22 @@
+alias vim="nvim"
+alias vinit="$HOME/workspace/dotfiles/nvim/init.vim"
+alias tmux="tmux -2"
+
+alias bupdate="source ~/.bashrc"
+alias gupdate="GO111MODULE=on go get golang.org/x/tools/gopls@latest"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+alias workspace="cd $HOME/workspace"
+alias projects="cd $HOME/workspace/projects"
+alias dotfiles="cd $HOME/workspace/dotfiles"
+
+if [ -x /usr/bin/dircolors ]; then
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
