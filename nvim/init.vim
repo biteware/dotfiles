@@ -6,11 +6,14 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/nvim-compe'
     Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 luafile ~/.config/nvim/lua/compe-config.lua
 luafile ~/.config/nvim/lua/bash-ls.lua
 luafile ~/.config/nvim/lua/gopls-ls.lua
+
+colorscheme nord
 
 set hidden
 set encoding=utf-8
