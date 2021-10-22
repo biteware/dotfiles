@@ -32,5 +32,6 @@ Sets the backup to run every day at 18:00.
 ```bash
 crontab -e
 0 18 * * * $HOME/workspace/dotfiles/backup.sh
+sudo service cron start
 ```
 
