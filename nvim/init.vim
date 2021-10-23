@@ -7,6 +7,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'hrsh7th/nvim-compe'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'arcticicestudio/nord-vim'
+    Plug 'preservim/nerdtree'
 call plug#end()
 
 luafile ~/.config/nvim/lua/compe-config.lua
@@ -39,8 +40,8 @@ set iskeyword+=-
 set background=dark
 
 
+" LSP Keybinds
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
 nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <M-f> <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <M-h> <cmd>lua vim.lsp.buf.hover()<CR>
@@ -49,3 +50,6 @@ nnoremap <silent> <M-n> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 autocmd BufWritePre *.go lua goimports(1000)
 autocmd BufWritePre *go lua vim.lsp.buf.formatting()
+
+" NERDTree Keybinds
+nnoremap <C-n> :NERDTreeToggle<CR>
