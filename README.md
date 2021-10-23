@@ -35,3 +35,8 @@ crontab -e
 sudo service cron start
 ```
 
+## Delve
+You may have to move this into your `usr/local/go/bin` directory manually depending on system setup.
+```
+go install github.com/go-delve/delve/cmd/dlv@latest
+```

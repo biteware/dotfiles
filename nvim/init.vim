@@ -8,6 +8,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'preservim/nerdtree'
+    Plug 'sebdah/vim-delve'
 call plug#end()
 
 luafile ~/.config/nvim/lua/compe-config.lua
