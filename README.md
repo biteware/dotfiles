@@ -4,7 +4,20 @@ A collection of my local environment setup files, created to make my life easier
 ## Installation
 Neovim and the LSP Server
 ```bash
-# TODO: Instructions
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+mv nvim.appimage nvim
+sudo mv nvim.appimage /usr/local/bin/
+```
+
+If the appimage fails to run
+```bash
+./nvim.appimage --appimage-extract
+./squashfs-root/AppRun --version
+
+# Optional: exposing nvim globally
+mv squashfs-root / && ln -s /squashfs-root/AppRun /usr/bin/nvim
+nvim
 ```
 
 ### Symlinking and Plugin Installs
