@@ -33,11 +33,23 @@ ln -s $HOME/workspace/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
 ln -s $HOME/workspace/dotfiles/nvim/lua/bash-ls.lua ~/.config/nvim/lua/bash-ls.lua
 ln -s $HOME/workspace/dotfiles/nvim/lua/compe-config.lua ~/.config/nvim/lua/compe-config.lua
 ln -s $HOME/workspace/dotfiles/nvim/lua/gopls-ls.lua ~/.config/nvim/lua/gopls-ls.lua
+ln -s $HOME/workspace/dotfiles/nvim/lua/rust-ls.lua ~/.config/nvim/lua/rust-ls.lua
 ```
   
 Install the Plugins via vim-plug  
 ```bash
 :PlugInstall
+```
+
+## Language Servers
+### gopls
+```bash
+```
+
+### rust-analyzer
+```bash
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+chmod +x ~/.local/bin/rust-analyzer
 ```
 
 ## Autobackup
