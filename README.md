@@ -2,7 +2,20 @@
 A collection of my local environment setup files, created to make my life easier when setting up environments on new machines.
 
 ## Installation
-Neovim and the LSP Server
+###Install Go
+Visit the following page and grab the latest version with wget - https://go.dev/dl/
+```bash
+wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
+sudo tar -C /usr/local/ -xzf go1.17.5.linux-amd64.tar.gz
+```
+
+Update the Path Variable
+```bash
+$GOROOT=/usr/local/go
+PATH=$PATH:$GOROOT/bin/
+```
+
+### Neovim and the LSP Server
 ```bash
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
@@ -34,6 +47,12 @@ ln -s $HOME/workspace/dotfiles/nvim/lua/bash-ls.lua ~/.config/nvim/lua/bash-ls.l
 ln -s $HOME/workspace/dotfiles/nvim/lua/compe-config.lua ~/.config/nvim/lua/compe-config.lua
 ln -s $HOME/workspace/dotfiles/nvim/lua/gopls-ls.lua ~/.config/nvim/lua/gopls-ls.lua
 ln -s $HOME/workspace/dotfiles/nvim/lua/rust-ls.lua ~/.config/nvim/lua/rust-ls.lua
+```
+
+Install vim-plug
+```bash
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
   
 Install the Plugins via vim-plug  

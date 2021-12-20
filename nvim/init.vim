@@ -14,7 +14,6 @@ call plug#end()
 luafile ~/.config/nvim/lua/compe-config.lua
 luafile ~/.config/nvim/lua/bash-ls.lua
 luafile ~/.config/nvim/lua/gopls-ls.lua
-luafile ~/.config/nvim/lua/rust-ls.lua
 
 colorscheme nord
 
