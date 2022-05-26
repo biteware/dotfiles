@@ -17,28 +17,9 @@ alias gocleantest="go clean -testcache"
 # Project Alias
 alias dotfiles="cd $HOME/workspace/dotfiles/"
 alias projects="cd $HOME/workspace/projects"
-alias core="cd $HOME/workspace/projects/betbuilder/core"
-alias uads="cd $HOME/bet365/mod/b365/user_auth"
 alias sandbox="cd $HOME/workspace/sandbox"
-alias dumps="cd $HOME/workspace/dumps"
-alias profiles="cd $HOME/workspace/dumps/profiles"
 alias goversions="cd $HOME/workspace/goversions"
-alias disco="cd $HOME/workspace/projects/disco"
 alias workspace="cd /home/mikeyleah/workspace/"
-alias maxstakesapi="cd $HOME/workspace/path/src/maxstakesapi"
-
-# Functions
-jdrive() {
-   sudo mount -t cifs -o user=mikeyleah,uid=mikeyleah "//pfs001b/Development Department/" /mnt/j
-}
-
-bjss() {
-    sudo mount -t cifs -o user=mikeyleah,uid=mikeyleah "//dev-fs/" /mnt/bjss
-}
-
-golp() {
-   /home/mikeyleah/bet365/path/src/golp/golp $1
-}
 
 extract() {
    if [ -f $1 ] ; then
@@ -68,39 +49,6 @@ go-version-switch() {
 	sudo rm -rf /usr/local/go
 	sudo mv $HOME/workspace/goversions/go /usr/local/go
 	cd $CURDIR
-}
-
-dumpfixture() {
-    ssh $1 curl localhost:8080/$3/pregame/dump?fid=$2 > $HOME/workspace/dumps/betbuilder/uat/$2.json
-}
-
-bb-seqbuildfiles() {
-    # For a sequence of letters
-    START=$1
-    n=$2
-
-    OFFSET=$( expr $(printf "%x" \'$START) + $n)
-    STOP=$(printf "\x$OFFSET") 
-
-    echo "Files Made:\n"
-    for letter in $(eval echo {$START..$STOP}); 
-    do
-        echo "IR1BBDPCS01B${letter}P0.sh"
-        cp MN2BBDPCS01AAP0.sh "IR1BBDPCS01B${letter}P0.sh"
-    done
-}
-
-# Production Commands
-jumpoff() {
-    ssh dev_mleah@MN2JMPSVR0001P0
-}
-
-p-dumpfixture() {
-    ssh dev_mleah@mn2jmpsvr0001p0 ssh $1 curl localhost:8080/basketball/pregame/dump?fid=$2 > $HOME/workspace/dumps/betbuilder/prod/$2.json
-}
-
-p-soccerdump() {
-    ssh dev_mleah@mn2jmpsvr0001p0 
 }
 
 # Old Module New Module
