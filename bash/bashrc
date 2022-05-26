@@ -1,15 +1,23 @@
-#------------------#
-# .bashrc settings #
-#------------------#
+# .bashrc
 
-if [ -f /etc/bash.bashrc ]; then
-    . /etc/bash.bashrc
+# User specific aliases and functions
+if [ -f ~/workspace/dotfiles/bash/commands ]; then
+	. ~/workspace/dotfiles/bash/commands
 fi
 
-if [ -f ~/workspace/dotfiles/bash/aliases ]; then
-    . ~/workspace/dotfiles/bash/aliases
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
 fi
 
-export PS1="\[\033[38;5;6m\][\[$(tput sgr0)\]\u\[$(tput sgr0)\]\[\033[38;5;14m\]@\[$(tput sgr0)\]\h\[$(tput sgr0)\]\[\033[38;5;14m\]]\[$(tput sgr0)\] -> \[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;14m\]\W\[$(tput sgr0)\] \[$(tput sgr0)\]"
+export PS1="\[\033[38;5;43m\]\u\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;121m\]\w\[$(tput sgr0)\]\[\033[38;5;9m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\]\n\\$ \[$(tput sgr0)\]"
 
-. "$HOME/.cargo/env"
+# Rebind Capslock to Escape
+setxkbmap -option caps:escape
+
+# Set directory colours to a nice purple
+LS_COLORS=$LS_COLORS:'di=0;35:'
+export LS_COLORS
+
+export TERM=xterm-256color

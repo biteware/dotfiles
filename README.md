@@ -1,29 +1,45 @@
 # Dotfiles
-A collection of my local environment setup files, created to make my life easier when setting up environments on new machines.
 
 ## Installation
-###Install Go
-Visit the following page and grab the latest version with wget - https://go.dev/dl/
+In order to install the dotfiles you will need to symlink the files to their relevant locations. Below is a list of the symlinks required for installation.
+
+
+## Go Setup
+Update the version to the version of Go that you need.
 ```bash
-wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
-sudo tar -C /usr/local/ -xzf go1.17.5.linux-amd64.tar.gz
+$ wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
+$ sudo tar -C /usr/local/ -xzf go1.17.5.linux-amd64.tar.gz
+```
+Update your `$PATH` in your `~/.bash_profile`.
+```bash
+$ $GOROOT=/usr/local/go
+$ PATH=$PATH:$GOROOT/bin/
 ```
 
-Update the Path Variable
+#### Install gopls Server
+Provides autocomplete, linting and a bunch of other cool bits.
 ```bash
-$GOROOT=/usr/local/go
-PATH=$PATH:$GOROOT/bin/
+$ go install golang.org/x/tools/gopls@latest
+```
+#### Delve
+Delve is the primary debugger used in the Go ecosystem enabling step throughs
+and all manner of cool bits. The command line is a bit harder to get use to but
+gives you more flexibility and options.
+```bash
+$ git clone https://github.com/go-delve/delve
+$ cd delve
+$ go install github.com/go-delve/delve/cmd/dlv
 ```
 
-### Neovim and the LSP Server
+## Neovim Setup
+Install Neovim from source.
 ```bash
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 mv nvim.appimage nvim
 sudo mv nvim.appimage /usr/local/bin/
 ```
-
-If the appimage fails to run
+if the appimage fails to run
 ```bash
 ./nvim.appimage --appimage-extract
 ./squashfs-root/AppRun --version
@@ -33,54 +49,49 @@ mv squashfs-root / && ln -s /squashfs-root/AppRun /usr/bin/nvim
 nvim
 ```
 
-### Symlinking and Plugin Installs
-**.bashrc file**  
-```bash
-ln -s $HOME/workspace/dotfiles/bash/bashrc ~/.bashrc
+Symlink the `init.vim` file for configuration and the lua files.
+```
+$ ln -s $HOME/workspace/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+$ ln -s $HOME/workspace/dotfiles/nvim/lua/compe-config.lua ~/.config/nvim/lua/compe-config.lua
+$ ln -s $HOME/workspace/dotfiles/nvim/lua/gopls-ls.lua ~/.config/nvim/lua/gopls-ls.lua
 ```
 
-**Neovim**  
-Begin by symlinking the `init.vim` file and the relevant lua files.
+Install `vim-plug`
 ```bash
-ln -s $HOME/workspace/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
-ln -s $HOME/workspace/dotfiles/nvim/lua/bash-ls.lua ~/.config/nvim/lua/bash-ls.lua
-ln -s $HOME/workspace/dotfiles/nvim/lua/compe-config.lua ~/.config/nvim/lua/compe-config.lua
-ln -s $HOME/workspace/dotfiles/nvim/lua/gopls-ls.lua ~/.config/nvim/lua/gopls-ls.lua
-ln -s $HOME/workspace/dotfiles/nvim/lua/rust-ls.lua ~/.config/nvim/lua/rust-ls.lua
-```
-
-Install vim-plug
-```bash
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+$ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
-  
-Install the Plugins via vim-plug  
+
+Run `vim-plug` to install vim plugins.
 ```bash
+$ nvim
+
+# While inside nvim...
 :PlugInstall
 ```
 
-## Language Servers
-### gopls
+## Terminator Setup
+Tmux can often be a pain with colorschemes in vim and rather than wrestle with
+that for an afternoon an easier solution is to use a different terminal that
+supports split windows in a similar fashion such as terminator.
+
 ```bash
+$ yum install terminator
 ```
 
-### rust-analyzer
+Default shells are boring so lets add a theme to make it look pretty. After
+these steps are complete open terminator and `terminator > preferences >
+plugins` you should see themes which you can enable and choose one you like.
+
 ```bash
-curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
-chmod +x ~/.local/bin/rust-analyzer
+$ yum install python-pip
+$ mkdir -p $HOME/.config/terminator/plugins
+$ wget https://git.io/v5Zww -O $HOME"/.config/terminator/plugins/terminator-themes.py"
 ```
 
-## Autobackup
-Sets the backup to run every day at 18:00. 
+## Misc Setup
+Symlink your `.bashrc` and `.tmuxconf`
 ```bash
-crontab -e
-0 18 * * * $HOME/workspace/dotfiles/backup.sh
-sudo service cron start
+$ ln -s $HOME/workspace/dotfiles/bash/bashrc ~/.bashrc
 ```
 
-## Delve
-You may have to move this into your `usr/local/go/bin` directory manually depending on system setup.
-```
-go install github.com/go-delve/delve/cmd/dlv@latest
-```

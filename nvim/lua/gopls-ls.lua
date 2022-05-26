@@ -1,6 +1,6 @@
 require'lspconfig'.gopls.setup{
     cmd = {"gopls", "serve"},
-    filetypes = { "go", "gomod" },
+    filetypes = { "go", "gomod", "go.mod" },
     settings = {
       gopls = {
         analyses = {
