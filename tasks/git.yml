@@ -1,0 +1,4 @@
+- name: Install Git 
+  pacman: name=git
+  tags:
+    - core

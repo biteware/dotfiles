@@ -1,0 +1,12 @@
+- name: Install zsh
+  pacman: name=zsh
+  tags:
+    - core
+- name: Change shell
+  shell: chsh -s $(which zsh)
+  tags:
+    - core
+- name: install oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  tags:
+    - core
