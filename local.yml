@@ -1,12 +1,16 @@
 - hosts: localhost
+  vars:
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
   become: true
   pre_tasks:
     - name: update pacman
       pacman: 
         update_cache: true
         upgrade: yes
-        tags:
-          - core
+      tags:
+        - core
   tasks:
+    - include: tasks/ssh.yml
     - include: tasks/git.yml
     - include: tasks/zsh.yml
