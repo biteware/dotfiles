@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+read -p "Which Environment: " env
+session_name=$(tmux display-message -p '#S')
+
+hostfile=$session_name:$env
+
+readarray hosts < ~/.tmuxhosts/$hostfile
+
+tmux new-window -n $hostfile
+tmux select-window -t $hostfile
+for host in "${hosts[@]}"
+do
+    echo $host
+done
+
